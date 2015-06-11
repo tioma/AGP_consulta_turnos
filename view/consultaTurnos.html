@@ -1,0 +1,81 @@
+<div class="container" ng-controller="consultaTurnosCtrl">
+
+	<div class="row col-lg-offset-1 col-lg-10 well text-center">
+		<div class="row hidden-print">
+			<div class="xpage-header">
+				<h1><img ng-src="img/calendar.png" height="64" width="64"> Consulta de turnos</h1>
+			</div>
+		</div>
+		<br class="hidden-print">
+		<div ng-show="cargando" class="hidden-print">
+			<img src="img/ajax-loader.gif">
+		</div>
+		<div class="row bs-example form-horizontal hidden-print" ng-show="!cargando && !mostrarResultado && !mostrarHTML">
+			<fieldset>
+				<div class="form-group">
+					<label for="inputEmail" class="col-lg-3 control-label"><span class="glyphicon glyphicon-inbox"></span> E-Mail</label>
+					<div class="col-lg-7">
+						<input type="text" class="form-control" ng-model="email" ng-keyup="hitEnter($event)" id="inputEmail" placeholder="Ingresar correo electrónico" autocomplete="off">
+					</div>
+					<div class="col-lg-2 text-left">
+						<a href="" popover="La dirección ingresada no es válida" popover-trigger="mouseenter" ng-show="email != '' && !validEmail"><img src="img/error.png" height="32" width="32"></a>
+						<img src="img/correcto.png" ng-show="email != '' && validEmail" height="32" width="32">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputContenedor" class="col-lg-3 control-label"><span class="glyphicon glyphicon-asterisk"></span> Contenedor</label>
+					<div class="col-lg-7">
+						<input type="text" class="form-control" ng-model="contenedor" ng-keyup="hitEnter($event)" id="inputContenedor" placeholder="Ingresar contenedor" autocomplete="off" toUpper>
+					</div>
+				</div>
+				<div class="form-group">
+					<br>
+					<div class="text-center">
+						<button type="button" class="btn btn-primary" ng-click="consultar()" ng-keyup="hitEnter($event)" ng-disabled="deshabilitarConsulta"><span class="glyphicon glyphicon-send"></span> Consultar</button>
+						<!--<button type="button" class="btn btn-primary" ng-click="test()" ng-keyup="hitEnter($event)"><span class="glyphicon glyphicon-send"></span> Consultar</button>-->
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="hidden-print" ng-show="!cargando && mostrarResultado">
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover" style="text-align: center">
+					<thead>
+					<tr>
+						<th style="text-align: center" colspan="3">Turno</th>
+						<th style="text-align: center">Buque</th>
+						<th style="text-align: center">Viaje</th>
+						<th style="text-align: center">Contenedor</th>
+						<th style="text-align: center">Tipo</th>
+						<th style="text-align: center">Alta</th>
+						<th style="text-align: center">Usuario</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="turno in turnos">
+						<td>{{ turno.inicio | date: 'dd/MM/yyyy':'UTC' }}</td>
+						<td>{{ turno.inicio | date: 'HH:mm':'UTC' }}</td>
+						<td>{{ turno.fin | date: 'HH:mm':'UTC' }}</td>
+						<td>{{ turno.buque }}</td>
+						<td>{{ turno.viaje }}</td>
+						<td>{{ turno.contenedor }}</td>
+						<td>{{ turno.mov }}</td>
+						<td>{{ turno.alta | date: 'dd/MM/yyyy HH:mm'  }}</td>
+						<td>{{ turno.user }}</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<button class="text-center btn" ng-click="volver()"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button>
+			<!--<div ng-bind-html="to_trusted(respuesta)"></div>-->
+		</div>
+		<div class="post" style="font-family: normal 70% 'Open Sans',sans-serif; font-size:12px; background-color:white!important; padding: 10px" ng-show="!cargando && mostrarHTML" ng-bind-html="to_trusted(respuesta)"></div>
+		<br>
+		<button class="text-center btn hidden-print" ng-click="volver()" ng-show="!cargando && mostrarHTML"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button>
+		<button class="text-center btn btn-primary hidden-print" ng-click="imprimir()" ng-show="!cargando && mostrarHTML"><span class="glyphicon glyphicon-print"></span> Imprimir</button>
+		<!--<div class="post" style="font-family: normal 70% 'Open Sans',sans-serif; font-size:12px; background-color:white!important; padding: 10px">
+		<!DOCTYPE html><html lang="es"><head><title>Servicio Terminales Portuarias</title></head><body style="font-family: 'Open Sans',sans-serif; font-size: 12px; background-color:white !important"><table><tr style="background-color: white !important;"><td><img src="http://terminales.puertobuenosaires.gob.ar/images/logo.png"></td><td><h1 style="font-family: inherit; font-weight: 400; font-size: 30px; line-height: 1.1; background-color:white !important; color: #0099d7;">&nbsp;Comprobante de Coordinación</h1></td></tr></table><p style="text-align: left">Solicitud generada en&nbsp;<b></b>&nbsp;el día<b>&nbsp;11-06-2015 16:15 hs.</b>. Se contaba con&nbsp;<b></b>&nbsp;turnos disponibles dentro del período de la Tarifa 1.</p><table cellpadding="4" style="background-color: #ffffff; border-collapse: separate; border-spacing: 2px !important; border-color: gray !important; font-size: 16px; font-weight:bolder; color: #000000"><tr><td style="padding: 4px; font-size: 70% !important; text-align:right; background-color:#C8C8C8">Terminal:</td><td style="padding: 4px; font-size: 70% !important; border:1px solid #C8C8C8; background-color:#ffffff; text-align: left"></td></tr><tr><td style="padding: 4px; font-size: 70% !important; text-align:right; background-color:#C8C8C8">Fecha:</td><td style="padding: 4px; font-size: 70% !important; border:1px solid #C8C8C8; background-color:#ffffff; text-align: left">18-05-2015</td></tr><tr><td style="padding: 4px; font-size: 70% !important; text-align:right; background-color:#C8C8C8">Horario:</td><td style="padding: 4px; font-size: 70% !important; border:1px solid #C8C8C8; background-color:#ffffff; text-align: left">17:00hs. a 18:00hs.</td></tr><tr><td style="padding: 4px; font-size: 70% !important; text-align:right; background-color:#C8C8C8">Contenedor:</td><td style="padding: 4px; font-size: 70% !important; border:1px solid #C8C8C8; background-color:#ffffff; text-align: left">ARTI1234567</td></tr><tr><td style="padding: 4px; font-size: 70% !important; text-align:right; background-color:#C8C8C8">Buque:</td><td style="padding: 4px; font-size: 70% !important; border:1px solid #C8C8C8; background-color:#ffffff; text-align: left">x</td></tr><tr><td style="padding: 4px; font-size: 70% !important; text-align:right; background-color:#C8C8C8">Viaje:</td><td style="padding: 4px; font-size: 70% !important; border:1px solid #C8C8C8; background-color:#ffffff; text-align: left">x1</td></tr><tr><td style="padding: 4px; font-size: 70% !important; text-align:right; background-color:#C8C8C8">Movimiento:</td><td style="padding: 4px; font-size: 70% !important; border:1px solid #C8C8C8; background-color:#ffffff; text-align: left"> Importación</td></tr></table><p><p>Administración General de Puertos pone en conocimiento que el Turno solicitado ha sido generado correctamente. Este comprobante deberá ser presentado ante cualquier reclamo.</p></p></body></html>
+		</div>-->
+	</div>
+
+</div>

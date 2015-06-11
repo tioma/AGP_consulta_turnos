@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+
+<head>
+	<title>Consulta de turnos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+
+	<style type="text/css" media="screen">
+		@import url( http://www.e-puertobue.com.ar/wp-content/themes/Marque/style.css );
+	</style>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.flaty.css">
+	<link rel="stylesheet" href="css/dialogs.css">
+	<link rel="icon" type="image/png" href="img/LogoPUERTO.png">
+	<!-- HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]-->
+	<script src="angular/html5.js"></script>
+	<!--[endif]-->
+	<!-- Angular 1.2.4 y modulos-->
+	<script src="angular/angular.min.js"></script>
+	<script src="angular/angular-sanitize.min.js"></script>
+	<script src="angular/angular-ui-router.min.js"></script>
+	<script src="angular/ui-bootstrap-tpls-min.js"></script>
+	<!-- App Script -->
+	<script src="controller/main.js"></script>
+	<!-- Factory -->
+	<script src="factory/consultaTurnos.js"></script>
+	<!-- Controles Angular-->
+	<script src="controller/consultaTurnos.js"></script>
+	<script src="controller/dialogs.js"></script>
+	<!-- Directives -->
+	<script src="directives/toUpper.js"></script>
+	<!-- Otros -->
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top hidden-print">
+	<div class="container">
+		<div class="navbar-header">
+			<a ui-sref="consulta" class="nav navbar-brand hidden-lg"><img src="img/LogoPUERTO.png" width="30" height="30"> AGP S.E.</a>
+			<a ui-sref="consulta" class="nav navbar-brand visible-lg"><img src="img/LogoPUERTO.png" width="30" height="30"> Administración General de Puertos</a>
+		</div>
+	</div>
+</div>
+<br class="hidden-print">
+<div class="row">
+	<br class="hidden-print">
+	<br class="hidden-print">
+	<div ui-view></div>
+</div>
+
+
+</body>
+
+</html>
