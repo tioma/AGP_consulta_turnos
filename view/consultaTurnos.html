@@ -38,6 +38,7 @@
 			</fieldset>
 		</div>
 		<div class="hidden-print" ng-show="!cargando && mostrarResultado">
+			<p>Se hallaron {{ turnos.length }} turnos .-</p>
 			<div class="table-responsive">
 				<table class="table table-bordered table-hover" style="text-align: center">
 					<thead>
@@ -49,6 +50,7 @@
 						<th style="text-align: center">Tipo</th>
 						<th style="text-align: center">Alta</th>
 						<th style="text-align: center">Usuario</th>
+						<th style="text-align: center"><span class="glyphicon glyphicon-check"></span></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -62,6 +64,7 @@
 						<td>{{ turno.mov }}</td>
 						<td>{{ turno.alta | date: 'dd/MM/yyyy HH:mm'  }}</td>
 						<td>{{ turno.user }}</td>
+						<td><a href ng-click="seleccionar(turno._id)"><span class="glyphicon glyphicon-check"></span></a></td>
 					</tr>
 					</tbody>
 				</table>

@@ -49,10 +49,18 @@ myapp.controller('consultaTurnosCtrl', ['$scope', 'turnosFactory', 'dialogs', '$
 		})
 	};
 
-	$scope.test = function(){
-		turnosFactory.test(function(data){
-			$scope.respuesta = data;
-			$scope.mostrarResultado = true;
+	$scope.seleccionar = function(id){
+		$scope.mostrarResultado = false;
+		$scope.cargando = true;
+		turnosFactory.turnoById($scope.contenedor, id, function(data, status){
+			if (status == 'OK'){
+				$scope.respuesta = data;
+				$scope.mostrarHTML = true;
+			} else {
+				dialogs.error('Consulta de turnos', 'Se ha producido un error al cargar los datos');
+				$scope.mostrarResultado = true;
+			}
+			$scope.cargando = false;
 		})
 	};
 
@@ -65,11 +73,21 @@ myapp.controller('consultaTurnosCtrl', ['$scope', 'turnosFactory', 'dialogs', '$
 	};
 
 	$scope.volver = function(){
-		$scope.mostrarResultado = false;
-		$scope.mostrarHTML = false;
-		$scope.turnos = [];
-		$scope.email = '';
-		$scope.contenedor = '';
+		if ($scope.mostrarHTML){
+			if ($scope.turnos.length > 0){
+				$scope.mostrarHTML = false;
+				$scope.mostrarResultado = true;
+			} else {
+				$scope.mostrarHTML = false;
+				$scope.email = '';
+				$scope.contenedor = '';
+			}
+		} else {
+			$scope.mostrarResultado = false;
+			$scope.turnos = [];
+			$scope.email = '';
+			$scope.contenedor = '';
+		}
 	};
 
 	$scope.hitEnter = function(evt){
