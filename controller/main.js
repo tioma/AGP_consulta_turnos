@@ -8,7 +8,7 @@ var myapp = angular.module('myapp', ['ui.router','ui.bootstrap', 'ngSanitize']);
 
 myapp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
-	// For any unmatched url, send to /login
+	// For any unmatched url, send to
 	$urlRouterProvider.otherwise("/consultaTurnos");
 
 	//noinspection JSValidateTypes
