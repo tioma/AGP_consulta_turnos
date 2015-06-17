@@ -18,13 +18,3 @@ myapp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
 			templateUrl: "view/consultaTurnos.html"
 		})
 }]);
-
-myapp.run(['$injector', function($injector){
-
-	// Le agrega el token a todas las consultas $http
-	$injector.get("$http").defaults.transformRequest = function(data, headersGetter) {
-		headersGetter()['token'] = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im5vcmVwbHlAcHVlcnRvYnVlbm9zYWlyZXMuZ29iLmFyIn0.g4d2NfkU5vIYfkG2QuEsKpTiT_-jpYLK5QGriiKa4Ck';
-		if (data) { return angular.toJson(data); }
-	};
-
-}]);
