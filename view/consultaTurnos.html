@@ -15,7 +15,7 @@
 				<div class="form-group">
 					<label for="inputEmail" class="col-lg-3 control-label"><span class="glyphicon glyphicon-inbox"></span> E-Mail</label>
 					<div class="col-lg-7">
-						<input type="text" class="form-control" ng-model="email" ng-keyup="hitEnter($event)" id="inputEmail" placeholder="Ingresar correo electrónico" autocomplete="off">
+						<input type="text" class="form-control" ng-model="email" ng-keyup="hitEnter($event)" id="inputEmail" placeholder="Ingresar correo electrónico" autocomplete="off" lowercased>
 					</div>
 					<div class="col-lg-2 text-left">
 						<a href="" popover="La dirección ingresada no es válida" popover-trigger="mouseenter" ng-show="email != '' && !validEmail"><img src="img/error.png" height="32" width="32"></a>
@@ -25,7 +25,7 @@
 				<div class="form-group">
 					<label for="inputContenedor" class="col-lg-3 control-label"><span class="glyphicon glyphicon-asterisk"></span> Contenedor</label>
 					<div class="col-lg-7">
-						<input type="text" class="form-control" ng-model="contenedor" ng-keyup="hitEnter($event)" id="inputContenedor" placeholder="Ingresar contenedor" autocomplete="off" toUpper>
+						<input type="text" class="form-control" ng-model="contenedor" ng-keyup="hitEnter($event)" id="inputContenedor" placeholder="Ingresar contenedor" autocomplete="off" uppercased>
 					</div>
 				</div>
 				<div class="form-group">
