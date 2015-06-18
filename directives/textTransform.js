@@ -9,7 +9,6 @@ myapp.directive('uppercased', function() {
 				input ? element.css("text-transform","uppercase") : element.css("text-transform","initial");
 				return input ? input.toUpperCase() : "";
 			});
-
 		}
 	};
 });
@@ -22,7 +21,6 @@ myapp.directive('lowercased', function() {
 				input ? element.css("text-transform","lowercase") : element.css("text-transform","initial");
 				return input ? input.toLowerCase() : "";
 			});
-
 		}
 	};
 });
