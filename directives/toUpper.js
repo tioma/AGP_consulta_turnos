@@ -6,9 +6,10 @@ myapp.directive('uppercased', function() {
 		require: 'ngModel',
 		link: function(scope, element, attrs, modelCtrl) {
 			modelCtrl.$parsers.push(function(input) {
+				input ? element.css("text-transform","uppercase") : element.css("text-transform","initial");
 				return input ? input.toUpperCase() : "";
 			});
-			element.css("text-transform","uppercase");
+
 		}
 	};
 });
@@ -18,9 +19,10 @@ myapp.directive('lowercased', function() {
 		require: 'ngModel',
 		link: function(scope, element, attrs, modelCtrl) {
 			modelCtrl.$parsers.push(function(input) {
+				input ? element.css("text-transform","lowercase") : element.css("text-transform","initial");
 				return input ? input.toLowerCase() : "";
 			});
-			element.css("text-transform","lowercase");
+
 		}
 	};
 });
